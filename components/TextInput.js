@@ -12,6 +12,7 @@ const Input = props => {
         onKeyPress={props.onKeyPress}
         underlineColorAndroid={'transparent'}
         keyboardType={props.keyboardType}
+        textAlign={props.textAlign}
       />
     </View>
   );
