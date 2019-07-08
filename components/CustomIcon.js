@@ -3,7 +3,6 @@ import { Platform, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 export default function CustomIcon(props) {
-    // return <Icon name={props.name} color={props.color} size={30}/>
     return(
         <TouchableOpacity onPress={props.onPress}>
             <Ionicons
