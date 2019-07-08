@@ -14,6 +14,7 @@ import HotDealsCarousel from '../components/Carousel/HotDealsCarousel';
 import Layout from '../constants/Layout'
 import Colors from "../constants/Colors";
 import ButtonIcon from '../components/CategoryButton/ButtonIcon'
+import CustomIcon from '../components/CustomIcon';
 
 const DATACATEGORY = [
     { id: 1, text: 'Bars & Pub', color: '#6F4EF2', icon: 'beer' },
@@ -32,6 +33,7 @@ export default function HomeScreen() {
             <ImageBackground source={require('../assets/images/header-bg.png')} style={{ height: '60%' }}>
                 <View style={styles.customHeader}>
                     <Text style={styles.titleHeader}>VOV DEALS</Text>
+                    <CustomIcon name='search'/>
                 </View>
                 <HotDealsCarousel></HotDealsCarousel>
             </ImageBackground>
@@ -61,6 +63,8 @@ const styles = StyleSheet.create({
         height: Layout.headerHeight,
         margin: 15,
         paddingTop: 30,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
     contentContainer: {
         marginRight: Layout.screenMargin,
