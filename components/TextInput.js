@@ -11,7 +11,7 @@ const Input = props => {
         maxLength={props.maxLength}
         onKeyPress={props.onKeyPress}
         underlineColorAndroid={'transparent'}
-        keyboardType="phone-pad"
+        keyboardType={props.keyboardType}
       />
     </View>
   );
