@@ -29,7 +29,11 @@ export default function HomeScreen() {
       </ImageBackground>
       <View style={styles.contentContainer}>
         <Text style={styles.TextHeader}>Categories</Text>
-        <CustomButton caption="NEXT" icon="add" />
+        <CustomButton
+          caption="NEXT"
+          icon="add"
+          onPress={() => console.log('key pressed')}
+        />
       </View>
     </View>
   );
