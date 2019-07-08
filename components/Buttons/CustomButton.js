@@ -26,7 +26,8 @@ export default class index extends Component {
 
   render() {
     const { theme, caption, icon, onPress } = this.props;
-    let buttonTheme = theme === 'light' ? styles.light : styles.dark;
+    let buttonTheme =
+      theme === 'light' ? [styles.light, styles.borderLight] : styles.dark;
 
     let textTheme = theme === 'light' ? styles.textLight : styles.textDark;
     return (
@@ -43,9 +44,7 @@ const styles = StyleSheet.create({
   container: {
     height: 46,
     justifyContent: 'center',
-    borderWidth: 1,
-    borderRadius: 5,
-    borderColor: '#d1d1d1'
+    borderRadius: 5
   },
   caption: {
     textAlign: 'center',
@@ -54,7 +53,7 @@ const styles = StyleSheet.create({
     marginRight: 10
   },
   light: {
-    backgroundColor: '#d1d1d1',
+    backgroundColor: '#ededed',
     color: 'black'
   },
   dark: {
@@ -63,12 +62,18 @@ const styles = StyleSheet.create({
   },
   innerContainer: {
     flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignItems: 'baseline'
   },
   textLight: {
-    color: '#ededed'
+    color: '#b9b9b9'
   },
   textDark: {
     color: 'white'
+  },
+  borderLight: {
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: '#c9c9c9'
   }
 });
