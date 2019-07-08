@@ -33,7 +33,7 @@ export default function HomeScreen() {
             <ImageBackground source={require('../assets/images/header-bg.png')} style={{ height: '60%' }}>
                 <View style={styles.customHeader}>
                     <Text style={styles.titleHeader}>VOV DEALS</Text>
-                    <CustomIcon name='search'/>
+                    <CustomIcon name='search' size={24}/>
                 </View>
                 <HotDealsCarousel></HotDealsCarousel>
             </ImageBackground>
