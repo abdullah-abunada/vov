@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import IconAndLabel from '../IconAndLabel';
+import color from '../../constants/Colors'
 
 export default class Cards extends Component {
 	render() {
@@ -26,9 +27,9 @@ export default class Cards extends Component {
 					</Text>
 				</View>
 				<View style={styles.container}>
-					<IconAndLabel name="md-star" color="tintColor" text="4.5" style={styles.Ionicons} />
-					<IconAndLabel name="md-star" color="pink" text="45%-70%" />
-					<IconAndLabel name="md-star" color="red" text="VAELACHERY" />
+					<IconAndLabel name="star" color="#F1D542" text="4.5" style={styles.Ionicons} />
+					<IconAndLabel name="pricetag" color="green" text="45%-70%" />
+					<IconAndLabel name="bookmark" color="#F30095" text="VAELACHERY" />
 				</View>
 			</View>
 		);
