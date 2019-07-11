@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
     margin:  Layout.screenMargin,
     textAlign: 'center',
     color: '#000',
-    fontFamily: 'Poppins',
   },
   header: {
     textAlign: 'center',
@@ -37,6 +36,8 @@ const styles = StyleSheet.create({
     marginLeft: 33,
     marginRight: 34,
     marginBottom: 40,
+    fontFamily: 'Poppins-Bold',
+
   },
   paragraph: {
     textAlign: 'center',
@@ -46,12 +47,14 @@ const styles = StyleSheet.create({
     marginRight: 5,
     marginTop: 30,
     marginBottom: 56.7,
+    fontFamily: 'poppins-regular',
+
   },
   textStyle:{
     color: "#fff",
     textAlign: 'center',
     fontSize: 13,
-    fontFamily: 'Poppins',
+    fontFamily: 'poppins-regular',
     textTransform: 'uppercase',
   }
 });
