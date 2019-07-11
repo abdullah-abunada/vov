@@ -1,37 +1,31 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Platform } from 'react-native';
+import { View, TouchableOpacity, Platform, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import Colors from '../../constants/Colors';
 
-export default class Rating extends Component {
+export default class Ratings extends Component {
+  showStars() {
+    const star = Platform.OS === 'ios' ? 'ios-star' : 'md-star';
+    const { numStars, status } = this.props;
+    const icons = [];
+    const containerStyle =
+      status === 'selected'
+        ? [styles.container, styles.selectedContainerColor]
+        : [styles.container, styles.defaultContainerColor];
+
+    const starStyle =
+      status === 'selected'
+        ? [styles.star, styles.selectedStarColor]
+        : [styles.star, styles.defaultStarColor];
+    for (let i = 1; i <= numStars; i++) {
+      icons.push(<Ionicons key={i} name={star} style={starStyle} />);
+    }
+    return <View style={containerStyle}>{icons}</View>;
+  }
   render() {
-    let { rate } = this.props;
-    if (rate > 5) {
-      rate = 5;
-    } else if (rate < 0) {
-      rate = 0;
-    }
-    const numFullStars = Math.round(rate);
-    const numEmptyStars = 5 - numFullStars;
-    const star = Platform.os === 'ios' ? `ios-star` : `md-star`;
-    const emptyStar =
-      Platform.os === 'ios' ? `ios-star-outline` : `md-star-outline`;
-
-    const fullRatingIcons = [];
-    const emptyRatingIcons = [];
-    for (let i = 1; i <= numFullStars; i++) {
-      fullRatingIcons.push(
-        <Ionicons key={i} name={star} size={26} color="#febf00" />
-      );
-    }
-    for (let i = 1; i <= numEmptyStars; i++) {
-      emptyRatingIcons.push(<Ionicons key={i} name={emptyStar} size={26} />);
-    }
-
+    const { onPress } = this.props;
     return (
-      <View style={styles.container}>
-        {emptyRatingIcons}
-        {fullRatingIcons}
-      </View>
+      <TouchableOpacity onPress={onPress}>{this.showStars()}</TouchableOpacity>
     );
   }
 }
@@ -39,10 +33,27 @@ export default class Rating extends Component {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    // backgroundColor: '#e3e3e3',
     alignItems: 'center',
-    height: 40,
-    padding: 5,
-    justifyContent: 'center'
+    height: 30,
+    padding: 6,
+    borderRadius: 5
+  },
+  selectedContainerColor: {
+    backgroundColor: Colors.tintColor,
+    borderWidth: 0
+  },
+  defaultContainerColor: {
+    backgroundColor: 'white',
+    borderWidth: 2,
+    borderColor: '#e9e9e9'
+  },
+  defaultStarColor: {
+    color: '#979797'
+  },
+  selectedStarColor: {
+    color: 'white'
+  },
+  star: {
+    padding: 2
   }
 });
