@@ -13,11 +13,11 @@ export default function searchBar(props) {
     />
       <TextInput
         style={styles.textInput}
-        onChangeText={(text) => props.handleSearchInput({text})}
+        onChangeText={(text) => props.handleSearchInput(text)}
         value={props.text}
         placeholder='search'
         placeholderTextColor='#DEDEDE'
-      />      
+      />
     </View>
   );
 }
@@ -39,8 +39,8 @@ const styles = StyleSheet.create({
   borderWidth: 1,
   width:'90%',
   fontSize:12,
-  padding:5, 
-  borderWidth:0, 
+  padding:5,
+  borderWidth:0,
   fontFamily:'poppins-regular'
  }
 });

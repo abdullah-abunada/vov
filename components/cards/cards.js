@@ -16,7 +16,7 @@ export default class Cards extends Component {
 					<Text
 						style={{
 							padding: 15,
-							fontWeight: 900,
+							fontWeight: '900',
 							fontSize: 14,
 							fontFamily: 'poppins-regular',
 							textAlign: 'left',

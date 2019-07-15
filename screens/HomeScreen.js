@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
     Image,
     Platform,
@@ -27,7 +27,13 @@ const DATACATEGORY = [
     { id: 8, text: 'Hotels', color: '#F5D142', icon: 'bed' },
 ];
 
-export default function HomeScreen() {
+export default class HomeScreen extends Component {
+  handleButtonIcon = (id) => {
+    switch(id) {
+      case 4: {return this.props.navigation.navigate('Category')}
+    }
+  }
+  render() {
     return (
         <View style={styles.container}>
             <ImageBackground source={require('../assets/images/header-bg.png')} style={{ height: '60%' }}>
@@ -41,13 +47,14 @@ export default function HomeScreen() {
                 <Text style={styles.TextHeader}>Categories</Text>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10, flexWrap: 'wrap' }}>
                     {DATACATEGORY.map(item => {
-                        return <ButtonIcon key={item.id} color={item.color} icon={item.icon} text={item.text} />
+                        return <ButtonIcon _onPressButton={()=>this.handleButtonIcon(item.id)} key={item.id} color={item.color} icon={item.icon} text={item.text} />
                     })}
                 </View>
             </View>
         </View>
 
     );
+  }
 }
 
 HomeScreen.navigationOptions = {
