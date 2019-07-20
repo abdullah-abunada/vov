@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Platform, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Colors from '../../constants/Colors';
 
- export default class Ratings extends Component {
+export default class Ratings extends Component {
   showStars() {
     const star = Platform.OS === 'ios' ? 'ios-star' : 'md-star';
     const { numStars, status } = this.props;
@@ -56,5 +56,5 @@ import Colors from '../../constants/Colors';
   },
   star: {
     padding: 2
-  },
+  }
 });
