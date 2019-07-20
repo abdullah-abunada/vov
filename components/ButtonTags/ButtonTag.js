@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 
 class ButtonTag extends React.Component {
   state = {
@@ -15,10 +15,11 @@ class ButtonTag extends React.Component {
     const { text, id } = this.props;
     const { isCheck } = this.state;
     return (
-      <TouchableOpacity onPress={() => this.handleButton(id)}
+        <TouchableOpacity
+        onPress={() => this.handleButton(id)}
         style={[styles.container, isCheck ? styles.check : styles.normal]}>
         <Text style={[styles.text, isCheck ? styles.checkText : null]}>{text}</Text>
-      </TouchableOpacity>
+        </TouchableOpacity>
     );
   }
 }

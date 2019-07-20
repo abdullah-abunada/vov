@@ -20,7 +20,7 @@ export default class index extends Component {
         </View>
       );
     } else {
-      return <Text style={[styles.caption, mytheme]}>{caption}</Text>;
+      return <Text style={[styles.caption, textTheme]}>{caption}</Text>;
     }
   };
 
@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
   },
   caption: {
     textAlign: 'center',
-    fontFamily: 'poppins-regular',
-    fontSize: 13,
+    fontFamily: 'Poppins-Medium',
+    fontSize: 14,
     marginRight: 10
   },
   light: {

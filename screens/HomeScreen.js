@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
     StyleSheet,
     Text,
@@ -42,6 +42,12 @@ class HomeScreen extends React.Component {
     componentDidMount() {
         this.props.getMyData();
     }
+    
+    handleButtonIcon(id) {
+      switch(id) {
+        case 4: {return this.props.navigation.navigate('Category')}
+      }
+    }
 
     render() {
         return (
@@ -57,14 +63,13 @@ class HomeScreen extends React.Component {
                     <Text style={styles.TextHeader}>Categories</Text>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10, flexWrap: 'wrap' }}>
                         {DATACATEGORY.map(item => {
-                            return <ButtonIcon key={item.id} color={item.color} icon={item.icon} text={item.text} />
+                          return <ButtonIcon _onPressButton={()=>this.handleButtonIcon(item.id)} key={item.id} color={item.color} icon={item.icon} text={item.text} />
                         })}
                     </View>
                 </View>
             </View>
-
-        );
-    }
+    );
+  }
 }
 
 const mapStateToProps = (state) => {
