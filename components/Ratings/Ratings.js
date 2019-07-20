@@ -13,7 +13,7 @@ export default class Ratings extends Component {
         ? [styles.container, styles.selectedContainerColor]
         : [styles.container, styles.defaultContainerColor];
 
-    const starStyle =
+     const starStyle =
       status === 'selected'
         ? [styles.star, styles.selectedStarColor]
         : [styles.star, styles.defaultStarColor];
@@ -30,13 +30,14 @@ export default class Ratings extends Component {
   }
 }
 
-const styles = StyleSheet.create({
+ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
     height: 30,
     padding: 6,
-    borderRadius: 5
+    borderRadius: 5,
+    marginRight: 10,
   },
   selectedContainerColor: {
     backgroundColor: Colors.tintColor,

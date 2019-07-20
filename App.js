@@ -1,29 +1,36 @@
-import { AppLoading } from 'expo';
-import { Asset } from 'expo-asset';
+import {AppLoading} from 'expo';
+import {Asset} from 'expo-asset';
 import * as Font from 'expo-font';
-import React, { useState } from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import React, {useState} from 'react';
+import {Platform, StatusBar, StyleSheet, View} from 'react-native';
+import {Ionicons} from '@expo/vector-icons';
 
 import AppNavigator from './navigation/AppNavigator';
+
+import {Provider} from 'react-redux'
+import createStore from './redux'
+
+const store = createStore()
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
 
   if (!isLoadingComplete && !props.skipLoadingScreen) {
     return (
-      <AppLoading
-        startAsync={loadResourcesAsync}
-        onError={handleLoadingError}
-        onFinish={() => handleFinishLoading(setLoadingComplete)}
-      />
+        <AppLoading
+            startAsync={loadResourcesAsync}
+            onError={handleLoadingError}
+            onFinish={() => handleFinishLoading(setLoadingComplete)}
+        />
     );
   } else {
     return (
-      <View style={styles.container}>
-        {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-        <AppNavigator />
-      </View>
+        <Provider store={store}>
+          <View style={styles.container}>
+            {Platform.OS === 'ios' && <StatusBar barStyle="default"/>}
+            <AppNavigator/>
+          </View>
+        </Provider>
     );
   }
 }
@@ -41,6 +48,9 @@ async function loadResourcesAsync() {
       // remove this if you are not using it in your app
       'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
       'poppins-regular': require('./assets/fonts/poppins/Poppins-Regular.ttf'),
+      'Poppins-Medium': require('./assets/fonts/poppins/Poppins-Medium.ttf'),
+      'Poppins-SemiBold': require('./assets/fonts/poppins/Poppins-SemiBold.ttf'),
+      'Poppins-Bold': require('./assets/fonts/poppins/Poppins-Bold.ttf'),
       'Poppins-Medium': require('./assets/fonts/poppins/Poppins-Medium.ttf'),
     }),
   ]);

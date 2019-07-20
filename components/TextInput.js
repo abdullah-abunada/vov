@@ -7,7 +7,7 @@ const Input = props => {
       <TextInput
         style={styles.TextInput}
         value={props.value}
-        onChangeText={props.value}
+        onChangeText={props.onChangeText}
         maxLength={props.maxLength}
         onKeyPress={props.onKeyPress}
         underlineColorAndroid={'transparent'}

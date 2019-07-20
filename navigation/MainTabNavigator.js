@@ -8,6 +8,7 @@ import HomeScreen from '../screens/HomeScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import NearByScreen from '../screens/NearByScreen';
+import CategoryScreen from '../screens/CategoryScreen';
 
 const config = Platform.select({
     web: {headerMode: 'screen'},
@@ -17,6 +18,7 @@ const config = Platform.select({
 const HomeStack = createStackNavigator(
     {
         Home: HomeScreen,
+        Category: CategoryScreen,
     },
     config
 );
@@ -84,6 +86,7 @@ ProfileStack.navigationOptions = {
 };
 
 ProfileStack.path = '';
+
 
 const tabNavigator = createBottomTabNavigator({
     HomeStack,

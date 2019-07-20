@@ -6,7 +6,7 @@ class ButtonIcon extends React.Component {
   render() {
     const { color, icon, text } = this.props;
     return (
-      <TouchableOpacity onPress={this._onPressButton} style={styles.contaner}>
+      <TouchableOpacity onPress={this.props._onPressButton} style={styles.contaner}>
         <View style={[styles.button, { borderColor: `${color}22` }]} >
           <Ionicons
             name={
