@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, Platform } from 'react-native';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 
-class OffersSlider extends React.Component {
+ class OffersSlider extends React.Component {
   state = {
     sliderOneChanging: false,
     sliderOneValue: [5],
@@ -10,13 +10,13 @@ class OffersSlider extends React.Component {
     nonCollidingMultiSliderValue: [0, 100],
   };
 
-  sliderOneValuesChangeStart = () => {
+   sliderOneValuesChangeStart = () => {
     this.setState({
       sliderOneChanging: true,
     });
   };
 
-  sliderOneValuesChange = values => {
+   sliderOneValuesChange = values => {
     let newValues = [0];
     newValues[0] = values[0];
     this.setState({
@@ -24,27 +24,28 @@ class OffersSlider extends React.Component {
     });
   };
 
-  sliderOneValuesChangeFinish = () => {
+   sliderOneValuesChangeFinish = () => {
     this.setState({
       sliderOneChanging: false,
     });
   };
 
-  multiSliderValuesChange = values => {
+   multiSliderValuesChange = values => {
     this.setState({
       multiSliderValue: values,
     });
   };
 
-  nonCollidingMultiSliderValuesChange = values => {
+   nonCollidingMultiSliderValuesChange = values => {
     this.setState({
       nonCollidingMultiSliderValue: values,
     });
   };
 
-  render() {
+   render() {
     return (
       <View style={styles.container}>
+        <Text style={styles.title}>{this.props.title}</Text>
         <View style={styles.sliderOne}>
           <Text style={styles.text}>
             {this.state.nonCollidingMultiSliderValue[0]}{' '}
@@ -91,14 +92,14 @@ class OffersSlider extends React.Component {
   }
 }
 
-export default OffersSlider;
+ export default OffersSlider;
 
-var styles = StyleSheet.create({
+ var styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 26,
   },
   text: {
     paddingVertical: 20,
@@ -109,5 +110,12 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginLeft: 'auto',
+  },
+  title: {
+    fontSize: 24,
+    fontFamily: 'Poppins-Bold',
+    position: 'absolute',
+    left: 0,
+    top: 0,
   },
 });
