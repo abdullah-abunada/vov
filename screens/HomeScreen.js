@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import {
-    Image,
-    Platform,
-    ScrollView,
     StyleSheet,
     Text,
-    TouchableOpacity,
     ImageBackground,
     View,
 } from 'react-native';
@@ -15,6 +11,9 @@ import Layout from '../constants/Layout'
 import Colors from "../constants/Colors";
 import ButtonIcon from '../components/CategoryButton/ButtonIcon'
 import CustomIcon from '../components/CustomIcon';
+
+import DataActions from '../redux/MyDataRedux'
+
 
 const DATACATEGORY = [
     { id: 1, text: 'Bars & Pub', color: '#6F4EF2', icon: 'beer' },
@@ -27,39 +26,67 @@ const DATACATEGORY = [
     { id: 8, text: 'Hotels', color: '#F5D142', icon: 'bed' },
 ];
 
-export default class HomeScreen extends Component {
-  handleButtonIcon = (id) => {
-    switch(id) {
-      case 4: {return this.props.navigation.navigate('Category')}
+class HomeScreen extends React.Component {
+
+    static navigationOptions = ({navigation}) => {
+        return {
+            header: null,
+        };
+    };
+
+    constructor() {
+        super();
+        this.state = {};
     }
-  }
-  render() {
-    return (
-        <View style={styles.container}>
-            <ImageBackground source={require('../assets/images/header-bg.png')} style={{ height: '60%' }}>
-                <View style={styles.customHeader}>
-                    <Text style={styles.titleHeader}>VOV DEALS</Text>
-                    <CustomIcon name='search' size={24}/>
-                </View>
-                <HotDealsCarousel></HotDealsCarousel>
-            </ImageBackground>
-            <View style={styles.contentContainer}>
-                <Text style={styles.TextHeader}>Categories</Text>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10, flexWrap: 'wrap' }}>
-                    {DATACATEGORY.map(item => {
-                        return <ButtonIcon _onPressButton={()=>this.handleButtonIcon(item.id)} key={item.id} color={item.color} icon={item.icon} text={item.text} />
-                    })}
+
+    componentDidMount() {
+        this.props.getMyData();
+    }
+    
+    handleButtonIcon(id) {
+      switch(id) {
+        case 4: {return this.props.navigation.navigate('Category')}
+      }
+    }
+
+    render() {
+        return (
+            <View style={styles.container}>
+                <ImageBackground source={require('../assets/images/header-bg.png')} style={{ height: '60%' }}>
+                    <View style={styles.customHeader}>
+                        <Text style={styles.titleHeader}>VOV DEALS</Text>
+                        <CustomIcon name='search' size={24}/>
+                    </View>
+                    <HotDealsCarousel></HotDealsCarousel>
+                </ImageBackground>
+                <View style={styles.contentContainer}>
+                    <Text style={styles.TextHeader}>Categories</Text>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10, flexWrap: 'wrap' }}>
+                        {DATACATEGORY.map(item => {
+                          return <ButtonIcon _onPressButton={()=>this.handleButtonIcon(item.id)} key={item.id} color={item.color} icon={item.icon} text={item.text} />
+                        })}
+                    </View>
                 </View>
             </View>
-        </View>
-
     );
   }
 }
 
-HomeScreen.navigationOptions = {
-    header: null,
-};
+const mapStateToProps = (state) => {
+    return {
+        myData: state.myData.data,
+        error: state.myData.error,
+        fetching: state.myData.fetching,
+        userFetching: state.User.fetching,
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getMyData: () => dispatch(DataActions.dataRequest()),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
 
 
 const styles = StyleSheet.create({
