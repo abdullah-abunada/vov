@@ -7,7 +7,6 @@ import {UsersTypes} from '../redux/MyDataRedux'
 
 //Sagas
 import {getMyData, register} from './myDataSagas'
-import {getMyData} from './testSages'
 
 
 

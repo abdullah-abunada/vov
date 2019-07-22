@@ -41,8 +41,9 @@ class HomeScreen extends React.Component {
 
     componentDidMount() {
         this.props.getMyData();
+
     }
-    
+
     handleButtonIcon(id) {
       switch(id) {
         case 4: {return this.props.navigation.navigate('Category')}
