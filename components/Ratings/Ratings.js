@@ -37,7 +37,6 @@ export default class Ratings extends Component {
     height: 30,
     padding: 6,
     borderRadius: 5,
-    marginRight: 10,
   },
   selectedContainerColor: {
     backgroundColor: Colors.tintColor,

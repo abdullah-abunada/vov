@@ -4,13 +4,16 @@ import CustomButton from '../components/CustomButton.js';
 import Layout from '../constants/Layout'
 
 export default function NearByScreen() {
-  return (
-      <ScrollView style={styles.container}>
+  return (<View style={styles.container}>
+      <ScrollView >
         <Text style={styles.header}>find the nearest shop!</Text>
-        <Image source={require('../assets/images/gps.png')} />
+        <View style={styles.image}>
+          <Image source={require('../assets/images/gps.png')} />
+        </View>
         <Text style={styles.paragraph}>It is a long established fact that a reader will be distracted by the readablli</Text>
-        <CustomButton onPress={() => Alert.alert('Hi')} text="location" textStyle={styles.textStyle} backgroundColor="#8A04B2"  height={46}/>
       </ScrollView>
+      <CustomButton onPress={() => Alert.alert('Hi')} text="location" textStyle={styles.textStyle} backgroundColor="#8A04B2"  height={46}/>
+      </View>
   );
 }
 
@@ -56,5 +59,9 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontFamily: 'poppins-regular',
     textTransform: 'uppercase',
+  },
+  image: {
+    flex: 1,
+    alignItems: 'center',
   }
 });
