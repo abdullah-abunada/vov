@@ -155,7 +155,7 @@ ratingButtonsContainer: {
 },
 ratingButtonSubContainer: {
   flexDirection:'row',
-  justifyContent:'flex-start',
+  justifyContent:'space-between',
   flexWrap: 'wrap',
 },
 ratingTitle: {
