@@ -91,7 +91,7 @@ export default class LogIn extends Component {
           onPress={() => this.props.navigation.navigate("signUp")}
         >
           <Text style={{ color: Colors.secondaryColor }}>
-            Not a useer? Sign Up
+            Not a user? Sign Up
           </Text>
         </TouchableOpacity>
       </ScrollView>
