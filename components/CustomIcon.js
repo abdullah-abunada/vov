@@ -12,7 +12,7 @@ export default function CustomIcon(props) {
                         ? `ios-${props.name}`
                         : `md-${props.name}`
                 }
-                color={props.active ? props.color : Color.tabIconDefault}
+                color={props.active ? props.color : Color.white}
                 size={props.size}
             />
         </TouchableOpacity>
