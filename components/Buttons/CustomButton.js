@@ -15,8 +15,8 @@ export default class index extends Component {
     if (icon) {
       return (
         <View style={styles.innerContainer}>
-          <Text style={[styles.caption, textTheme]}>{caption}</Text>
           <Ionicons style={textTheme} name={name} size={26} />
+          <Text style={[styles.caption, textTheme]}>{caption}</Text>
         </View>
       );
     } else {
@@ -30,6 +30,7 @@ export default class index extends Component {
       theme === 'light' ? [styles.light, styles.borderLight] : styles.dark;
 
     let textTheme = theme === 'light' ? styles.textLight : styles.textDark;
+    textTheme = icon ? [textTheme, styles.addMargin] : textTheme;
     return (
       <TouchableOpacity
         style={[styles.container, buttonTheme]}
@@ -49,8 +50,7 @@ const styles = StyleSheet.create({
   caption: {
     textAlign: 'center',
     fontFamily: 'Poppins-Medium',
-    fontSize: 14,
-    marginRight: 10
+    fontSize: 14
   },
   light: {
     backgroundColor: '#ededed',
@@ -75,5 +75,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     borderColor: '#c9c9c9'
+  },
+  addMargin: {
+    marginRight: 10
   }
 });
