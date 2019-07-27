@@ -25,14 +25,14 @@ export default class index extends Component {
   };
 
   render() {
-    const { theme, caption, icon, onPress } = this.props;
+    const { theme, caption, icon, onPress, customStyle } = this.props;
     let buttonTheme =
       theme === 'light' ? [styles.light, styles.borderLight] : styles.dark;
 
     let textTheme = theme === 'light' ? styles.textLight : styles.textDark;
     return (
       <TouchableOpacity
-        style={[styles.container, buttonTheme]}
+        style={[styles.container, buttonTheme, customStyle]}
         onPress={onPress ? onPress : null}
       >
         {this.showButton(textTheme)}

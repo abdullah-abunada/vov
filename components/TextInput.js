@@ -13,6 +13,7 @@ const Input = props => {
         underlineColorAndroid={'transparent'}
         keyboardType={props.keyboardType}
         textAlign={props.textAlign}
+	placeholder={props.placeholder}
       />
     </View>
   );
