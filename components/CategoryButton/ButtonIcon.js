@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: 'Poppins-Medium',
-    fontSize: 12,
+    fontSize: 10,
     textAlign: 'center',
   }
 });
