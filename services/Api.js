@@ -1,16 +1,16 @@
 import apisauce from 'apisauce'
 
-const create = (baseURL = 'http://localhost/api') => {
+const create = (baseURL = 'https://vov-api.herokuapp.com') => {
 
     const api = apisauce.create({
         baseURL,
         timeout: 15000
     })
 
-    const getData = (params) => api.get('/myData', params)
+    const getCategorise = (params) => api.get('/categories', params)
 
     return {
-        getData
+        getCategorise
     }
 }
 

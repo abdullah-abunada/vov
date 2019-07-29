@@ -11,7 +11,7 @@ import CustomButton from '../components/CustomButton';
 import IconAndLabel from '../components/IconAndLabel';
 import Review from '../components/review';
 
-class ProductDetails extends React.Component {
+class ProductDetailsScreen extends React.Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -141,11 +141,11 @@ const styles = StyleSheet.create({
   },
 });
 
-ProductDetails.propTypes = {};
+ProductDetailsScreen.propTypes = {};
 
-export default ProductDetails;
+export default ProductDetailsScreen;
 
-ProductDetails.navigationOptions = {
+ProductDetailsScreen.navigationOptions = {
   header: null,
 };
 

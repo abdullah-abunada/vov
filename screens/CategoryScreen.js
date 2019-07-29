@@ -5,12 +5,14 @@ import ButtonTag from '../components/ButtonTags/ButtonTag'
 import Ratings from '../components/Ratings/Ratings'
 import CustomIcon from '../components/CustomIcon'
 import SearchBar from '../components/SearchBar'
-import Card from '../components/cards/cards'
+import Card from '../components/cards/Cards'
 import Slider from '../components/Slider'
 import Layout from '../constants/Layout'
 import Modal from '../components/Modal'
+import CategoryActions from "../redux/CategoryRedux";
+import {connect} from "react-redux";
 
-export default class CategoryScreen extends Component  {
+class CategoryScreen extends React.Component  {
 
   static navigationOptions = ({ navigation }) => {
     return {
@@ -33,36 +35,13 @@ export default class CategoryScreen extends Component  {
   }
 
   componentDidMount() {
+    this.props.getCategories();
     this.props.navigation.setParams({ showModal: this._showModal });
   }
 
   state = {
     showModal: false,
     tagButonsData: [
-      {
-        label: 'VELACHERY',
-        id: 0
-      },
-      {
-        label: 'VADAPALANI',
-        id: 1
-      },
-      {
-        label: 'GUNDY',
-        id: 2,
-      },
-      {
-        label: 'ADYAR',
-        id: 3,
-      },
-      {
-        label: 'T.NAGAR',
-        id: 4,
-      },
-      {
-        label: 'BESANT NAGAR',
-        id: 5,
-      },
     ],
     oneStarSelected: false,
     twoStarSelected: false,
@@ -86,15 +65,24 @@ export default class CategoryScreen extends Component  {
   }
   handleCancelButton = () => Alert.alert('handleCancelButton')
   handleApplyButton = () => Alert.alert('handleApplyButton')
-
   render() {
+    const {navigate} = this.props.navigation
+    if(this.props.categories.hasOwnProperty('response')){
+      this.setState({tagButonsData: this.props.categories.response})
+    }
     return (
       <ScrollView style={styles.container}>
         <SearchBar text={this.state.searchText} handleSearchInput={this.handleSearchInput}/>
         <View style={styles.cardsContainer}>
-          <Card  />
-          <Card  />
-          <Card  />
+          <Card onPress={()=>{
+            navigate('Product');
+          }} />
+          <Card onPress={()=>{
+            navigate('Product');
+          }}  />
+          <Card onPress={()=>{
+            navigate('Product');
+          }}  />
         </View>
 
         <Modal isVisible={this.state.showModal}
@@ -107,7 +95,7 @@ export default class CategoryScreen extends Component  {
         >
           <Text style={styles.modalTitle}>Find your nearest shop!</Text>
           <View style={styles.tagButtonsContainer}>
-            {this.state.tagButonsData.map(tagButton => <ButtonTag key={tagButton.id} text={tagButton.label} id={tagButton.id} handleButtonClick={this.handleTagButton} />)}
+            {this.props.categories.map(tagButton => <ButtonTag key={tagButton.id} text={tagButton.name} id={tagButton.id} handleButtonClick={this.handleTagButton} />)}
           </View>
           <Slider title="Offer" />
           <View style={styles.ratingButtonsContainer}>
@@ -129,6 +117,21 @@ export default class CategoryScreen extends Component  {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    categories: state.categorise.data,
+    error: state.categorise.error,
+    fetching: state.categorise.fetching,
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getCategories: () => dispatch(CategoryActions.categoryRequest()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryScreen)
 
 const styles = StyleSheet.create({
 container: {

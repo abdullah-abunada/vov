@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import IconAndLabel from '../IconAndLabel';
 import color from '../../constants/Colors'
 
 export default class Cards extends Component {
 	render() {
 		return (
-			<View>
+			<TouchableOpacity onPress={this.props.onPress}>
 				<View style={styles.card}>
 					<Image
 						source={require('../../assets/images/product.png')}
@@ -31,7 +31,7 @@ export default class Cards extends Component {
 					<IconAndLabel name="pricetag" color="green" text="45%-70%" />
 					<IconAndLabel name="bookmark" color="#F30095" text="VAELACHERY" />
 				</View>
-			</View>
+			</TouchableOpacity>
 		);
 	}
 }

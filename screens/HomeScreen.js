@@ -30,7 +30,7 @@ const DATACATEGORY2 = [
     { id: 8, text: 'Hotels', color: '#F5D142', icon: 'bed' },
 ];
 
-class HomeScreen extends React.Component {
+export default class HomeScreen extends React.Component {
 
     static navigationOptions = ({ navigation }) => {
         return {
@@ -47,7 +47,7 @@ class HomeScreen extends React.Component {
     }
 
     componentDidMount() {
-        this.props.getMyData();
+        //this.props.getMyData();
         registerForPushNotificationsAsync();
 
         this._notificationSubscription = Notifications.addListener(this._handleNotification);
@@ -77,7 +77,6 @@ class HomeScreen extends React.Component {
                     <HotDealsCarousel></HotDealsCarousel>
                 </ImageBackground>
                 <View style={styles.contentContainer}>
-                    <Text>Data: {JSON.stringify(this.state.notification.data)}</Text>
                     <Text style={styles.TextHeader}>Categories</Text>
                     <View style={{
                         flexDirection: 'row',
@@ -106,7 +105,7 @@ class HomeScreen extends React.Component {
         );
     }
 }
-
+/*
 const mapStateToProps = (state) => {
     return {
         myData: state.myData.data,
@@ -121,6 +120,8 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
+*/
+
 
 
 const styles = StyleSheet.create({
