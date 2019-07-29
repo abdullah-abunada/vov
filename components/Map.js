@@ -1,31 +1,83 @@
-
 import React from 'react';
-// import { Permissions, MapView, Location } from 'expo';
-import MapView from 'react-native-maps';
+import { StyleSheet, Dimensions, View, ScrollView, Image } from 'react-native';
+import MapView, {
+  Polyline,
+  ProviderPropType,
+  Marker,
+  Text,
+} from 'react-native-maps';
 
-export default function searchBar(props) {
-  return (
-    <MapView
-    ref={this.mapRef}
-    style={{ flex: 1, alignSelf: 'stretch', height: 150 }}
-    initialRegion={{
-      latitude: 31.963158,
-      longitude: 35.930359,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-    }}
-    // region={this.state.mapRegion}
-    provider={null}
-    // onRegionChange={this._handleMapRegionChange}
-    // onPress={e => this.handleMapPress(e)}
-  >
-    <MapView.Marker
-      coordinate={{
-        latitude: 31.963158,
-        longitude: 35.930359}}
-      title="marker.title"
-      description="desss"
-    />
-  </MapView>
-  );
+const { width, height } = Dimensions.get('window');
+const ASPECT_RATIO = width / height;
+const LATITUDE = 37.78825;
+const LONGITUDE = -122.4324;
+const LATITUDE_DELTA = 0.0922;
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+let id = 0;
+
+const COORDINATES = [
+  { latitude: 37.7948605, longitude: -122.4596065 },
+  { latitude: 37.8025259, longitude: -122.4351431 },
+];
+
+export default class Map extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      region: {
+        latitude: LATITUDE,
+        longitude: LONGITUDE,
+        latitudeDelta: LATITUDE_DELTA,
+        longitudeDelta: LONGITUDE_DELTA,
+      },
+      markers: [],
+    };
+  }
+
+  randomColor() {
+    return `#${Math.floor(Math.random() * 16777215)
+      .toString(16)
+      .padStart(6, 0)}`;
+  }
+
+  onMapPress(e) {
+    this.setState({
+      markers: [
+        ...this.state.markers,
+        {
+          coordinate: e.nativeEvent.coordinate,
+          key: id++,
+          color: this.randomColor(),
+        },
+      ],
+    });
+  }
+
+  render() {
+    return (
+      <MapView
+        provider={this.props.provider}
+        style={{
+          borderWidth: 5,
+          width: 335,
+          height: 320,
+        }}
+        initialRegion={this.state.region}
+        onPress={e => this.onMapPress(e)}>
+        <Polyline
+          coordinates={COORDINATES}
+          strokeColor="#8a04b2"
+          strokeWidth={3}
+        />
+        {this.state.markers.map(marker => (
+          <Marker
+            key={marker.key}
+            coordinate={marker.coordinate}
+            pinColor={marker.color}
+          />
+        ))}
+      </MapView>
+    );
+  }
 }
